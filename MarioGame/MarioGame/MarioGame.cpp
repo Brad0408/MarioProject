@@ -9,12 +9,12 @@ using namespace std;
 #include "constants.h"
 
 //Global
-
 SDL_Window* g_window = nullptr;
 
 //Function Prototypes
 bool InitSDL();
 void CloseSDL();
+bool Update();
 
 //Setup SDL
 bool InitSDL()
@@ -53,16 +53,48 @@ void CloseSDL()
     SDL_Quit();
 }
 
+bool Update()
+{
+    //Event Handler
+    SDL_Event e;
+
+    //Get Events
+    SDL_PollEvent(&e);
+
+    //Handle The Events
+    switch (e.type)
+    {
+        //Click the 'X' to quit
+    case SDL_QUIT:
+        return true;
+        break;
+
+    case SDL_KEYUP:
+        switch (e.key.keysym.sym)
+        {
+            //Press BackSpace to quit
+        case SDLK_BACKSPACE:
+            return true;
+            break;
+        }
+    }
+    return false;
+}
 
 int main(int argc, char* args[])
 {
     if (InitSDL())
     {
-        SDL_Delay(5000);
+        bool quit = false;
+
+        //Game Loop
+        while (!quit)
+        {
+            quit = Update();
+        }
     }
 
     CloseSDL();
-
 
     return 0;
 }
