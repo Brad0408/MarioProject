@@ -1,2 +1,3 @@
 ﻿  MarioGame.cpp
+C:\MarioProject\MarioProject\MarioGame\MarioGame\MarioGame.cpp(44): warning C4715: 'InitSDL': not all control paths return a value
   MarioGame.vcxproj -> C:\MarioProject\MarioProject\MarioGame\Debug\MarioGame.exe
