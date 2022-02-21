@@ -25,8 +25,8 @@
 *.meta
 *.obj
 *.iobj
-*.pch
-*.pdb
+#*.pch
+#*.pdb
 *.ipdb
 *.pgc
 *.pgd
@@ -54,6 +54,6 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
-*.VC.db
-*.VC.VC.opendb
+#*.VC.db
+#*.VC.VC.opendb
 
