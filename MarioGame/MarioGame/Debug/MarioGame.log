@@ -1,14 +1,9 @@
-﻿  Character.cpp
-  CharacterLuigi.cpp
-  CharacterMario.cpp
-  GameScreenLevel1.cpp
-  GameScreenManager.cpp
-  MarioGame.cpp
-  Texture2D.cpp
-C:\MarioProject\MarioProject\MarioGame\MarioGame\Texture2D.cpp(70,45): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\MarioProject\MarioProject\MarioGame\MarioGame\Texture2D.cpp(70,45): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\MarioProject\MarioProject\MarioGame\MarioGame\Texture2D.cpp(70,61): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\MarioProject\MarioProject\MarioGame\MarioGame\Texture2D.cpp(70,61): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-C:\MarioProject\MarioProject\MarioGame\MarioGame\GameScreenLevel1.cpp(55): warning C4715: 'GameScreenLevel1::SetUpLevel': not all control paths return a value
+﻿  GameScreenLevel1.cpp
+C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(47,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(47,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\MarioProject\MarioProject\MarioGame\MarioGame\CharacterMario.h(40,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\MarioProject\MarioProject\MarioGame\MarioGame\CharacterMario.h(40,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\MarioProject\MarioProject\MarioGame\MarioGame\CharacterLuigi.h(40,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\MarioProject\MarioProject\MarioGame\MarioGame\CharacterLuigi.h(40,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\MarioProject\MarioProject\MarioGame\MarioGame\GameScreenLevel1.cpp(67): warning C4715: 'GameScreenLevel1::SetUpLevel': not all control paths return a value
   MarioGame.vcxproj -> C:\MarioProject\MarioProject\MarioGame\Debug\MarioGame.exe

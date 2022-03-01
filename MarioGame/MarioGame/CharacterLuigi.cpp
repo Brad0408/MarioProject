@@ -1,5 +1,5 @@
 #include "CharacterLuigi.h"
-#include "Texture2D.h"
+
 
 
 CharacterLuigi::CharacterLuigi(SDL_Renderer* renderer, string imagePath, Vector2D start_postion) : Character(renderer, imagePath, start_postion)
@@ -20,6 +20,7 @@ CharacterLuigi::CharacterLuigi(SDL_Renderer* renderer, string imagePath, Vector2
 	m_moving_left = false;
 	m_moving_right = false;
 
+	m_collision_radius = 15.0f;
 }
 
 CharacterLuigi::~CharacterLuigi()
@@ -152,4 +153,9 @@ void CharacterLuigi::Jump()
 		m_jumping = true;
 		m_can_jump = false;
 	}
+}
+
+float CharacterLuigi::GetCollisionRadius()
+{
+	return m_collision_radius;
 }
