@@ -19,6 +19,7 @@ CharacterMario::CharacterMario(SDL_Renderer* renderer, string imagePath, Vector2
 	m_moving_left = false;
 	m_moving_right = false;
 
+	m_collision_radius = 15.0f;
 }
 
 CharacterMario::~CharacterMario()
@@ -151,4 +152,9 @@ void CharacterMario::Jump()
 		m_jumping = true;
 		m_can_jump = false;
 	}
+}
+
+float CharacterMario::GetCollisionRadius()
+{
+	return m_collision_radius;
 }
