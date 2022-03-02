@@ -1,9 +1,12 @@
-﻿  GameScreenLevel1.cpp
-C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(47,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(47,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\MarioProject\MarioProject\MarioGame\MarioGame\CharacterMario.h(40,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\MarioProject\MarioProject\MarioGame\MarioGame\CharacterMario.h(40,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\MarioProject\MarioProject\MarioGame\MarioGame\CharacterLuigi.h(40,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\MarioProject\MarioProject\MarioGame\MarioGame\CharacterLuigi.h(40,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\MarioProject\MarioProject\MarioGame\MarioGame\GameScreenLevel1.cpp(67): warning C4715: 'GameScreenLevel1::SetUpLevel': not all control paths return a value
+﻿  CharacterLuigi.cpp
+C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(48,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(48,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  GameScreenLevel1.cpp
+C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(48,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(48,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  GameScreenManager.cpp
+C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(48,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(48,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+C:\MarioProject\MarioProject\MarioGame\MarioGame\GameScreenLevel1.cpp(72): warning C4715: 'GameScreenLevel1::SetUpLevel': not all control paths return a value
   MarioGame.vcxproj -> C:\MarioProject\MarioProject\MarioGame\Debug\MarioGame.exe
