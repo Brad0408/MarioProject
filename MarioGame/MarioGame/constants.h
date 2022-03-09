@@ -16,3 +16,6 @@
 
 #define TILE_WIDTH 32
 #define TILE_HEIGHT 32
+
+//Pow Block
+#define SHAKE_DURATION 0.25f
