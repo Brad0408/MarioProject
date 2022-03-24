@@ -10,6 +10,7 @@ CharacterMario::CharacterMario(SDL_Renderer* renderer, string imagePath, Vector2
 		std::cout << "Failed to load background texture!" << std::endl;
 	}
 
+	m_movementspeed = MOVEMENTSPEED;
 }
 
 void CharacterMario::Update(float deltaTime, SDL_Event e)

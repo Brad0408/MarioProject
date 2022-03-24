@@ -17,10 +17,13 @@ Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_po
 
 	m_moving_left = false;
 	m_moving_right = false;
+	m_movementspeed;
 
 	m_collision_radius = 15.0f;
 
 	m_current_level_map = map;
+
+	m_alive = true;
 }
 
 Character::~Character()
@@ -62,11 +65,11 @@ void Character::Update(float deltaTime, SDL_Event e)
 
 	if (m_moving_left)
 	{
-		MoveLeft(deltaTime);
+		MoveLeft(deltaTime, m_movementspeed);
 	}
 	else if (m_moving_right)
 	{
-		MoveRight(deltaTime);
+		MoveRight(deltaTime, m_movementspeed);
 	}
 
 	//Collision position variables
@@ -95,16 +98,16 @@ Vector2D Character::GetPosition()
 	return m_position;
 }
 
-void Character::MoveLeft(float deltaTime)
+void Character::MoveLeft(float deltaTime, float speed)
 {
 	m_facing_direction = FACING_LEFT;
-	m_position.x -= deltaTime * MOVEMENTSPEED;
+	m_position.x -= deltaTime * speed;
 }
 
-void Character::MoveRight(float deltaTime)
+void Character::MoveRight(float deltaTime, float speed)
 {
 	m_facing_direction = FACING_RIGHT;
-	m_position.x += deltaTime * MOVEMENTSPEED;
+	m_position.x += deltaTime * speed;
 }
 
 void Character::AddGravity(float deltaTime)
@@ -132,4 +135,9 @@ void Character::Jump()
 float Character::GetCollisionRadius()
 {
 	return m_collision_radius;
+}
+
+void Character::SetAlive(bool IsAlive)
+{
+	m_alive = IsAlive;
 }
