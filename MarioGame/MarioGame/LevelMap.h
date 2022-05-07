@@ -3,6 +3,10 @@
 #define _LEVELMAP_H
 
 #include "constants.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 class LevelMap
 {
