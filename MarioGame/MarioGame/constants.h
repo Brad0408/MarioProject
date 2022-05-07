@@ -27,4 +27,8 @@
 //Koopa
 #define INJURED_TIME 2.5f
 #define INITAL_JUMP_FORCE_SMALL 100.0f
-#define KOOPA_SPEED 140.0f //old 40
+#define KOOPA_SPEED 40.0f //old 40
+
+
+//Coin
+#define ANIMATION_DELAY 0.10f

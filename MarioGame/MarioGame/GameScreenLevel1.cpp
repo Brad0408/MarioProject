@@ -5,9 +5,12 @@
 
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
 {
-	SetUpLevel();
-
 	m_level_map = nullptr;
+
+	m_maxTime = 7.0f;
+	m_currentTime = 7.0f;
+
+	SetUpLevel();
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -25,6 +28,9 @@ GameScreenLevel1::~GameScreenLevel1()
 
 	delete koopa;
 	koopa = nullptr;
+
+	delete coin;
+	coin = nullptr;
 
 	m_enemies.clear();
 }
@@ -45,8 +51,6 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 			m_background_yPos = 0.0f;
 		}
 	}
-
-
 
 	//Collision Check to console
 	//if (Collisions::Instance()->Box(mario->GetCollisionBox(), luigi->GetCollisionBox()))
@@ -71,18 +75,22 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	UpdateEnemies(deltaTime, e);
 
 	//Koopa
-	m_currentTime -= deltaTime;
-	cout << m_currentTime << endl;
+	m_currentTime = m_currentTime - deltaTime;
+	//cout << m_currentTime << endl;
 
-	////////////////////////////////////////////////////////////////////THING THAT DOESNT WORK IS HERE HAHAHAAH GL FUTURE ME//////////////////////////////////////////////////////
-	//if (m_currentTime <= 0.0f)
-	//{
-	//	cout << "Koopa Spawn";
-	//	CreateKoopa(Vector2D(150, 32), FACING_RIGHT, KOOPA_SPEED);
-	//	CreateKoopa(Vector2D(325, 32), FACING_LEFT, KOOPA_SPEED);
+	if (m_currentTime <= 0.0f)
+	{
+		cout << "Koopa Spawn" << endl;
+		CreateKoopa(Vector2D(150, 32), FACING_RIGHT, KOOPA_SPEED);
+		CreateKoopa(Vector2D(325, 32), FACING_LEFT, KOOPA_SPEED);
 
-	//	m_currentTime = m_maxTime;
-	//}
+		m_currentTime = m_maxTime;
+	}
+
+	//Coin
+	coin->Update(deltaTime, e);
+	UpdateCoin();
+	//cout << m_score << endl;
 
 }
 
@@ -104,6 +112,9 @@ void GameScreenLevel1::Render()
 
 	//Pow Block
 	m_pow_block->Render();
+
+	//Coin
+	coin->Render();
 }
 
 bool GameScreenLevel1::SetUpLevel()
@@ -119,7 +130,6 @@ bool GameScreenLevel1::SetUpLevel()
 
 	SetLevelMap();
 
-
 	//Set up the player characters
 	mario = new CharacterMario(m_renderer, "Images/Mario.png", Vector2D(64, 320), m_level_map);
 
@@ -131,11 +141,13 @@ bool GameScreenLevel1::SetUpLevel()
 	m_background_yPos = 0.0f;
 
 	//Koopa
-	m_maxTime = 3.0f;
-	m_currentTime = 3.0f;
-
 	CreateKoopa(Vector2D(150, 32), FACING_RIGHT, KOOPA_SPEED);
 	CreateKoopa(Vector2D(325, 32), FACING_LEFT, KOOPA_SPEED);
+
+	//Coin
+	m_score = 0;
+	CreateCoin(Vector2D(200, 200));
+
 
 }
 
@@ -193,6 +205,7 @@ void GameScreenLevel1::UpdatePowBlock()
 		}
 	}
 }
+
 
 void GameScreenLevel1::DoScreenShake()
 {
@@ -275,7 +288,6 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 			m_enemies.erase(m_enemies.begin() + enemyIndexToDelete);
 		}
 	}
-
 }
 
 void GameScreenLevel1::CreateKoopa(Vector2D position, FACING direction, float speed)
@@ -284,5 +296,29 @@ void GameScreenLevel1::CreateKoopa(Vector2D position, FACING direction, float sp
 	m_enemies.push_back(koopa);
 }
 
+void GameScreenLevel1::CreateCoin(Vector2D position)
+{
+	coin = new CharacterCoin(m_renderer, "Images/Coin.png", position, m_level_map);
+}
 
-// max time float , current time, 
+void GameScreenLevel1::UpdateCoin()
+{
+	//Mario With Coin
+	if (Collisions::Instance()->Circle(mario, coin) && coin->IsAvaliable())
+	{
+		cout << "Coin Hit" << endl;
+		m_score += 10;
+		coin->CoinPickup();
+
+	}
+
+	//Luigi With Coin
+	if (Collisions::Instance()->Circle(luigi, coin) && coin->IsAvaliable())
+	{
+		cout << "Coin Hit" << endl;
+		m_score += 10;
+		coin->CoinPickup();
+	}
+
+
+}
