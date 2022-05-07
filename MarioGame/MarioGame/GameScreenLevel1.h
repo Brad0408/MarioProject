@@ -26,11 +26,11 @@ class GameScreenLevel1 : GameScreen
 
 private:
 	Texture2D* m_background_texture;
-	bool SetUpLevel();
 	CharacterMario* mario;
 	CharacterLuigi* luigi;
 	CharacterKoopa* koopa;
 	CharacterCoin* coin;
+	bool SetUpLevel();
 
 	void SetLevelMap();
 	LevelMap* m_level_map;
@@ -52,6 +52,11 @@ private:
 	void CreateCoin(Vector2D position);
 	int m_score;
 
+
+	float x;
+	float y;
+
+	SDL_Rect camera = { static_cast<int>(x), static_cast<int>(y), SCREEN_WIDTH, SCREEN_HEIGHT };
 
 public:
 	GameScreenLevel1(SDL_Renderer* renderer);

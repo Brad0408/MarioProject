@@ -7,8 +7,8 @@ GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer
 {
 	m_level_map = nullptr;
 
-	m_maxTime = 7.0f;
-	m_currentTime = 7.0f;
+	m_maxTime = 6.0f;
+	m_currentTime = 6.0f;
 
 	SetUpLevel();
 }
@@ -92,6 +92,21 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	UpdateCoin();
 	//cout << m_score << endl;
 
+
+	//Screen Scroll
+	camera.x = mario->GetPosition().x - SCREEN_WIDTH / 2;
+
+	if (camera.x < 0)
+	{
+		camera.x = 0;
+	}
+
+	if (camera.x > LEVEL_WIDTH - camera.w)
+	{
+		camera.x = LEVEL_WIDTH - camera.w;
+	}
+
+
 }
 
 void GameScreenLevel1::Render()
@@ -99,22 +114,22 @@ void GameScreenLevel1::Render()
 	//Draw Enemies
 	for (int i = 0; i < m_enemies.size(); i++)
 	{
-		m_enemies[i]->Render();
+		m_enemies[i]->Render(camera);
 	}
 
 	//Draw the background
-	m_background_texture->Render(Vector2D(0, m_background_yPos), SDL_FLIP_NONE);
+	m_background_texture->Render(Vector2D(0, m_background_yPos), camera, SDL_FLIP_NONE, 0);
 
 	//Draw Character
-	mario->Render();
+	mario->Render(camera);
 
-	luigi->Render();
+	luigi->Render(camera);
 
 	//Pow Block
-	m_pow_block->Render();
+	m_pow_block->Render(camera);
 
 	//Coin
-	coin->Render();
+	coin->Render(camera);
 }
 
 bool GameScreenLevel1::SetUpLevel()
@@ -122,7 +137,7 @@ bool GameScreenLevel1::SetUpLevel()
 	//Load texture
 	m_background_texture = new Texture2D(m_renderer);
 
-	if (!m_background_texture->LoadFromFile("Images/BackgroundMB.png"))
+	if (!m_background_texture->LoadFromFile("Images/newBG.png"))
 	{
 		std::cout << "Failed to load background texture!" << std::endl;
 		return false;
@@ -140,9 +155,12 @@ bool GameScreenLevel1::SetUpLevel()
 	m_screenshake = false;
 	m_background_yPos = 0.0f;
 
-	//Koopa
+
+	//Koopa 
 	CreateKoopa(Vector2D(150, 32), FACING_RIGHT, KOOPA_SPEED);
 	CreateKoopa(Vector2D(325, 32), FACING_LEFT, KOOPA_SPEED);
+
+
 
 	//Coin
 	m_score = 0;
@@ -153,19 +171,20 @@ bool GameScreenLevel1::SetUpLevel()
 
 void GameScreenLevel1::SetLevelMap()
 {
-	int map[MAP_HEIGHT][MAP_WIDTH] = { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0 },
-										{ 1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
-										{ 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 } };
+	int map[MAP_HEIGHT][MAP_WIDTH] = { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+											{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+											{ 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1},
+											{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+											{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+											{ 0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0},
+											{ 1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1},
+											{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+											{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+											{ 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1},
+											{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+											{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+											{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1} };
+
 
 	//Clear any old maps
 	if (m_level_map != nullptr)
@@ -230,7 +249,10 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 			if (m_enemies[i]->GetPosition().y > 300.0f)
 			{
 				//Is the enemy off screen to the left / right?
-				if (m_enemies[i]->GetPosition().x < (float)(-m_enemies[i]->GetCollisionBox().width * 0.5f) || m_enemies[i]->GetPosition().x > SCREEN_WIDTH - (float)(m_enemies[i]->GetCollisionBox().width * 0.55f))m_enemies[i]->SetAlive(false);
+				if (m_enemies[i]->GetPosition().x < (float)(-m_enemies[i]->GetCollisionBox().width * 0.5f) || m_enemies[i]->GetPosition().x > LEVEL_WIDTH - (float)(m_enemies[i]->GetCollisionBox().width * 0.55f))
+				{
+					m_enemies[i]->SetAlive(false);
+				}
 
 			}
 			//Now do the update
@@ -238,7 +260,7 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 			m_enemies[i]->Update(deltaTime, e);
 
 			//Check to see if enemy collides with player
-			if ((m_enemies[i]->GetPosition().y > 300.0f || m_enemies[i]->GetPosition().y <= 64.0f) && (m_enemies[i]->GetPosition().x < 64.0f || m_enemies[i]->GetPosition().x > SCREEN_WIDTH - 96.0f))
+			if ((m_enemies[i]->GetPosition().y > 300.0f || m_enemies[i]->GetPosition().y <= 64.0f) && (m_enemies[i]->GetPosition().x < 64.0f || m_enemies[i]->GetPosition().x > LEVEL_WIDTH - 96.0f))
 			{
 				//ignore collision if behind pipe
 			}
@@ -319,6 +341,5 @@ void GameScreenLevel1::UpdateCoin()
 		m_score += 10;
 		coin->CoinPickup();
 	}
-
 
 }

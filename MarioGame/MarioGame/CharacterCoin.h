@@ -18,7 +18,7 @@ private:
 
 public:
 	CharacterCoin(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map);
-	virtual void Render() override;
+	virtual void Render(SDL_Rect camera_rect);
 	virtual void Update(float deltaTime, SDL_Event e) override;
 
 	void CoinPickup();

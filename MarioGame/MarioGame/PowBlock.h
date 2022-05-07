@@ -19,7 +19,7 @@ public:
 	PowBlock(SDL_Renderer* renderer, LevelMap* map);
 	~PowBlock();
 
-	virtual void Render();
+	virtual void Render(SDL_Rect camera_rect);
 
 	inline Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight()); }
 

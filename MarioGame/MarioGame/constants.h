@@ -2,6 +2,8 @@
 // Screen Dimensions
 #define SCREEN_WIDTH 512
 #define SCREEN_HEIGHT 412
+#define LEVEL_WIDTH 1024
+#define LEVEL_HEIGHT 412
 
 
 //Character
@@ -13,7 +15,7 @@
 
 //Level Map
 #define MAP_HEIGHT 13
-#define MAP_WIDTH 16
+#define MAP_WIDTH 32
 
 
 #define TILE_WIDTH 32
@@ -27,7 +29,7 @@
 //Koopa
 #define INJURED_TIME 2.5f
 #define INITAL_JUMP_FORCE_SMALL 100.0f
-#define KOOPA_SPEED 40.0f //old 40
+#define KOOPA_SPEED 40.0f // old 40
 
 
 //Coin

@@ -6,15 +6,15 @@ using namespace std;
 
 Texture2D::Texture2D(SDL_Renderer* renderer)
 {
-	m_renderer = renderer;
+    m_renderer = renderer;
 }
 
 Texture2D::~Texture2D()
 {
-	//Free up memory
-	Free();
+    //Free up memory
+    Free();
 
-	m_renderer = nullptr;
+    m_renderer = nullptr;
 }
 
 bool Texture2D::LoadFromFile(string path)
@@ -55,15 +55,30 @@ bool Texture2D::LoadFromFile(string path)
 
 void Texture2D::Free()
 {
-	if (m_texture != nullptr)
-	{
-		SDL_DestroyTexture(m_texture);
-		m_texture = nullptr;
-		m_width = 0;
-		m_height = 0;
-	}
+    if (m_texture != nullptr)
+    {
+        SDL_DestroyTexture(m_texture);
+        m_texture = nullptr;
+        m_width = 0;
+        m_height = 0;
+    }
 }
 
+//Screen Scroller
+void Texture2D::Render(Vector2D new_position, SDL_Rect clip, SDL_RendererFlip flip, double angle)
+{
+    SDL_Rect renderLocation = { new_position.x, new_position.y, m_width, m_height };
+
+    if (&clip != nullptr)
+    {
+        renderLocation.w = clip.w;
+        renderLocation.h = clip.h;
+    }
+
+    SDL_RenderCopyEx(m_renderer, m_texture, &clip, &renderLocation, 0, nullptr, flip);
+}
+
+//Orignal Render
 void Texture2D::Render(Vector2D new_position, SDL_RendererFlip flip, double angle)
 {
     //Set where to render the texture
@@ -73,9 +88,15 @@ void Texture2D::Render(Vector2D new_position, SDL_RendererFlip flip, double angl
     SDL_RenderCopyEx(m_renderer, m_texture, nullptr, &renderLocation, 0, nullptr, flip);
 }
 
+//Split Sprite Render
 void Texture2D::Render(SDL_Rect src_rect, SDL_Rect src_dest, SDL_RendererFlip flip, double angle)
 {
     SDL_RenderCopyEx(m_renderer, m_texture, &src_rect, &src_dest, angle, nullptr, flip);
 }
+
+
+
+
+
 
 

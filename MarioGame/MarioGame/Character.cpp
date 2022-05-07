@@ -31,15 +31,20 @@ Character::~Character()
 	m_renderer = nullptr;
 }
 
-void Character::Render()
+void Character::Render(SDL_Rect camera_rect)
 {
+	SDL_Rect src_rect = { 0, 0, m_texture->GetWidth(), m_texture->GetHeight() };
+
+	SDL_Rect dest_rect = { m_position.x - camera_rect.x , m_position.y - camera_rect.y, m_texture->GetWidth(), m_texture->GetHeight() };
+
+
 	if (m_facing_direction == FACING_RIGHT)
 	{
-		m_texture->Render(m_position, SDL_FLIP_NONE);
+		m_texture->Render(src_rect, dest_rect, SDL_FLIP_NONE);
 	}
 	else
 	{
-		m_texture->Render(m_position, SDL_FLIP_HORIZONTAL);
+		m_texture->Render(src_rect, dest_rect, SDL_FLIP_HORIZONTAL);
 	}
 }
 
