@@ -143,6 +143,38 @@ bool Update()
         }
     }
 
+    //Switch Screens
+    switch (e.type)
+    {
+    case SDL_KEYDOWN:
+        switch (e.key.keysym.sym)
+        {
+            //Press '1' to Play Level 1
+        case SDLK_1:
+            game_screen_manager = new GameScreenManager(g_renderer, SCREEN_LEVEL1);
+            break;
+
+            //Press '2' to Play Level 2
+        case SDLK_2:
+            game_screen_manager = new GameScreenManager(g_renderer, SCREEN_LEVEL2);
+            break;
+
+            //Press '3' to open the instruction screen
+        case SDLK_3:
+            game_screen_manager = new GameScreenManager(g_renderer, SCREEN_INSTRUCTIONS);
+            break;
+
+            //Press 'ESC' to go to Main Menu
+        case SDLK_ESCAPE:
+            game_screen_manager = new GameScreenManager(g_renderer, SCREEN_MENU);
+            break;
+
+
+        default:
+            break;
+        }
+    }
+
     game_screen_manager->Update((float)(new_time - g_old_time) / 1000.0f, e);
     g_old_time = new_time;
 
@@ -168,7 +200,7 @@ int main(int argc, char* args[])
             Mix_PlayMusic(g_music, -1);
         }
 
-        game_screen_manager = new GameScreenManager(g_renderer, SCREEN_LEVEL1);
+        game_screen_manager = new GameScreenManager(g_renderer, SCREEN_MENU);
         //Set the time
         g_old_time = SDL_GetTicks();
 

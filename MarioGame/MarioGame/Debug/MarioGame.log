@@ -1,9 +1,9 @@
-﻿  GameScreenLevel1.cpp
+﻿  GameScreenLevel2.cpp
 C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(51,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\MarioProject\MarioProject\MarioGame\MarioGame\Character.h(51,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\MarioProject\MarioProject\MarioGame\MarioGame\PowBlock.h(24,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\MarioProject\MarioProject\MarioGame\MarioGame\PowBlock.h(24,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\MarioProject\MarioProject\MarioGame\MarioGame\GameScreenLevel1.cpp(95,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\MarioProject\MarioProject\MarioGame\MarioGame\GameScreenLevel1.cpp(113,20): warning C4018: '<': signed/unsigned mismatch
-C:\MarioProject\MarioProject\MarioGame\MarioGame\GameScreenLevel1.cpp(168): warning C4715: 'GameScreenLevel1::SetUpLevel': not all control paths return a value
+C:\MarioProject\MarioProject\MarioGame\MarioGame\GameScreenLevel2.cpp(100,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\MarioProject\MarioProject\MarioGame\MarioGame\GameScreenLevel2.cpp(118,20): warning C4018: '<': signed/unsigned mismatch
+C:\MarioProject\MarioProject\MarioGame\MarioGame\GameScreenLevel2.cpp(173): warning C4715: 'GameScreenLevel2::SetUpLevel': not all control paths return a value
   MarioGame.vcxproj -> C:\MarioProject\MarioProject\MarioGame\Debug\MarioGame.exe

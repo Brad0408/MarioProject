@@ -149,8 +149,11 @@
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="GameScreenLevel1.cpp" />
+    <ClCompile Include="GameScreenLevel2.cpp" />
     <ClCompile Include="GameScreenManager.cpp" />
+    <ClCompile Include="InstructionScreen.cpp" />
     <ClCompile Include="LevelMap.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MarioGame.cpp" />
     <ClCompile Include="PowBlock.cpp" />
     <ClCompile Include="Texture2D.cpp" />
@@ -173,10 +176,16 @@
     <ClInclude Include="constants.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="GameScreenLevel1.h" />
+    <ClInclude Include="GameScreenLevel2.h" />
     <ClInclude Include="GameScreenManager.h" />
+    <ClInclude Include="InstructionScreen.h" />
     <ClInclude Include="LevelMap.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="PowBlock.h" />
     <ClInclude Include="Texture2D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Map.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
