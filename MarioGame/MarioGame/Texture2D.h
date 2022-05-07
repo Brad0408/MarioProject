@@ -19,7 +19,12 @@ public:
 	int GetWidth() { return m_width; }
 	int GetHeight() { return m_height; }
 
+	//Sprite Splitter Render
 	void Render(SDL_Rect src_rect, SDL_Rect src_dest, SDL_RendererFlip flip, double angle = 0.0);
+
+	//Screen Scroller
+	void Render(Vector2D new_position, SDL_Rect clip, SDL_RendererFlip flip, double angle);
+
 
 private:
 	SDL_Renderer* m_renderer;

@@ -42,7 +42,7 @@ public:
 	Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map);
 	~Character();
 
-	virtual void Render();
+	virtual void Render(SDL_Rect camera_rect);
 	virtual void Update(float deltaTime, SDL_Event e);
 	void SetPosition(Vector2D new_position);
 	Vector2D GetPosition();

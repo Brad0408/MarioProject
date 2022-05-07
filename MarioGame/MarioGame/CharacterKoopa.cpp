@@ -43,7 +43,7 @@ void CharacterKoopa::FlipRightwayUp()
 	Jump();
 }
 
-void CharacterKoopa::Render()
+void CharacterKoopa::Render(SDL_Rect camera_rect)
 {
 	//Variable to hold the left position of the sprite we want to draw
 	int left = 0.0f;
@@ -58,7 +58,7 @@ void CharacterKoopa::Render()
 	SDL_Rect portion_of_sprite = { left, 0, m_single_sprite_w, m_single_sprite_h };
 
 	//Deterime where you want it drawn
-	SDL_Rect destRect = { (int)(m_position.x), (int)(m_position.y), m_single_sprite_w, m_single_sprite_h };
+	SDL_Rect destRect = { (int)(m_position.x) - camera_rect.x, (int)(m_position.y) - camera_rect.y , m_single_sprite_w, m_single_sprite_h };
 
 	//Then draw it facing the correct direction 
 	if (m_facing_direction == FACING_RIGHT)
@@ -106,9 +106,8 @@ void CharacterKoopa::Update(float deltaTime, SDL_Event e)
 		}
 	}
 
-
 	//Right Side of Screen
-	if (m_position.x >= (SCREEN_WIDTH - m_texture->GetWidth() / 2) && m_facing_direction == FACING_RIGHT)
+	if (m_position.x >= (LEVEL_WIDTH - m_texture->GetWidth() / 2) && m_facing_direction == FACING_RIGHT)
 	{
 		m_facing_direction = FACING_LEFT;
 	}
@@ -125,3 +124,9 @@ bool CharacterKoopa::GetInjured()
 {
 	return m_injured;
 }
+
+
+
+
+
+
