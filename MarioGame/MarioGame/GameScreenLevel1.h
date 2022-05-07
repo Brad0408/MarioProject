@@ -8,6 +8,7 @@
 #include "CharacterMario.h"
 #include "CharacterLuigi.h"
 #include "CharacterKoopa.h"
+#include "CharacterCoin.h"
 #include "Collisions.h"
 #include "LevelMap.h"
 #include "PowBlock.h"
@@ -29,6 +30,7 @@ private:
 	CharacterMario* mario;
 	CharacterLuigi* luigi;
 	CharacterKoopa* koopa;
+	CharacterCoin* coin;
 
 	void SetLevelMap();
 	LevelMap* m_level_map;
@@ -47,6 +49,9 @@ private:
 	float m_maxTime;
 	float m_currentTime;
 
+	void CreateCoin(Vector2D position);
+	int m_score;
+
 
 public:
 	GameScreenLevel1(SDL_Renderer* renderer);
@@ -56,6 +61,7 @@ public:
 	void Update(float deltaTime, SDL_Event e) override;
 
 	void UpdatePowBlock();
+	void UpdateCoin();
 
 };
 
