@@ -5,6 +5,7 @@ using namespace std;
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 #include <SDL_mixer.h>
+#include <SDL_ttf.h>
 
 #include "constants.h"
 #include "Commons.h"
@@ -41,6 +42,14 @@ bool InitSDL()
         if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
         {
             cout << "Mixer could not init. Error: " << Mix_GetError();
+            return false;
+        }
+
+
+        //Initalise text
+        if (TTF_Init() < 0)
+        {
+            cout << "TTF did not initalise. Error: " << TTF_GetError();
             return false;
         }
 
@@ -113,6 +122,9 @@ void CloseSDL()
     //Clear up music
     Mix_FreeMusic(g_music);
     g_music = nullptr;
+
+    //Text
+    TTF_Quit();
 }
 
 bool Update()

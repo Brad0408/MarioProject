@@ -12,6 +12,7 @@
 #include "Collisions.h"
 #include "LevelMap.h"
 #include "PowBlock.h"
+#include "TextRenderer.h"
 #include <vector>
 
 
@@ -30,6 +31,7 @@ private:
 	CharacterLuigi* luigi;
 	CharacterKoopa* koopa;
 	CharacterCoin* coin;
+	TextRenderer* m_text;
 	bool SetUpLevel();
 
 	void SetLevelMap();
@@ -46,17 +48,24 @@ private:
 	void CreateKoopa(Vector2D position, FACING direction, float speed);
 	vector<CharacterKoopa*> m_enemies;
 
+	//Looping Enemies
 	float m_maxTime;
 	float m_currentTime;
 
+	//Coin
 	void CreateCoin(Vector2D position);
-	int m_score;
 
 
+	//Screen Scroll
 	float x;
 	float y;
 
 	SDL_Rect camera = { static_cast<int>(x), static_cast<int>(y), SCREEN_WIDTH, SCREEN_HEIGHT };
+
+	//Score
+	string message;
+	int m_score;
+	int m_old_score;
 
 public:
 	GameScreenLevel1(SDL_Renderer* renderer);
