@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 
+//////////////Same as Level 1 (no text renderer inlcuded),  Attempted file handling line 194///////////////
 
 GameScreenLevel2::GameScreenLevel2(SDL_Renderer* renderer) : GameScreen(renderer)
 {

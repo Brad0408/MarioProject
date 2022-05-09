@@ -3,6 +3,9 @@
 #include "Collisions.h"
 #include <iostream>
 
+////////Text renderer doesnt display, but scores go to the console instead//////////
+
+
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
 {
 	m_level_map = nullptr;
@@ -107,6 +110,13 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		camera.x = LEVEL_WIDTH - camera.w;
 	}
 
+	//Text
+	if (m_text != nullptr && m_score != m_old_score)
+	{
+		cout << "Score: " << m_score << endl;
+		m_old_score = m_score;
+		m_text->LoadFont("Fonts/arial.ttf", 100, message + to_string(m_score), { 100, 100, 100, 255 });
+	}
 
 }
 
@@ -131,6 +141,9 @@ void GameScreenLevel1::Render()
 
 	//Coin
 	coin->Render(camera);
+
+	//Text
+	m_text->Render(50, 100);
 }
 
 bool GameScreenLevel1::SetUpLevel()
@@ -164,9 +177,22 @@ bool GameScreenLevel1::SetUpLevel()
 
 
 	//Coin
-	m_score = 0;
 	CreateCoin(Vector2D(200, 200));
 
+	//Score
+	message = "Score: ";
+	m_score = 0;
+	m_old_score = 0;
+
+	m_text = new TextRenderer(m_renderer);
+
+	if (!m_text->LoadFont("Fonts/arial.ttf", 1000, message + to_string(m_score), { 100, 100, 100, 255 }))
+	{
+		std::cout << "Failed to load font!" << std::endl;
+		return false;
+	}
+
+	return true;
 
 }
 
@@ -202,26 +228,28 @@ void GameScreenLevel1::UpdatePowBlock()
 	//Mario With Pow Block
 	if (Collisions::Instance()->Box(mario->GetCollisionBox(), m_pow_block->GetCollisionBox()) && m_pow_block->IsAvaliable())
 	{
-		cout << "Pow Hit" << endl;
 		//Collided with jumping
 		if (mario->IsJumping())
 		{
+			cout << "Pow Hit" << endl;
 			DoScreenShake();
 			m_pow_block->TakeHit();
 			mario->CancelJump();
+			m_score += 10;
 		}
 	}
 
 	//Luigi With Pow Block
 	if (Collisions::Instance()->Box(luigi->GetCollisionBox(), m_pow_block->GetCollisionBox()) && m_pow_block->IsAvaliable())
 	{
-		cout << "Pow Hit" << endl;
 		//Collided with jumping
 		if (luigi->IsJumping())
 		{
+			cout << "Pow Hit" << endl;
 			DoScreenShake();
 			m_pow_block->TakeHit();
 			luigi->CancelJump();
+			m_score += 10;
 		}
 	}
 }

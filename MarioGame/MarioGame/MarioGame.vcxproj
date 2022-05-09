@@ -88,12 +88,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(PROJECTDIR)\SDL2\SDL\mixer_include;$(PROJECTDIR)\SDL2\SDL\image_include;$(PROJECTDIR)\SDL2\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(PROJECTDIR)\SDL2\SDL\mixer_include;$(PROJECTDIR)\SDL2\SDL\image_include;$(PROJECTDIR)\SDL2\SDL\include;$(PROJECTDIR)\TTF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(PROJECTDIR)\SDL2\SDL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(PROJECTDIR)\SDL2\SDL;$(PROJECTDIR)\TTF;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -156,6 +156,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MarioGame.cpp" />
     <ClCompile Include="PowBlock.cpp" />
+    <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,7 @@
     <Library Include="SDL2\SDL\SDL2test.lib" />
     <Library Include="SDL2\SDL\SDL2_image.lib" />
     <Library Include="SDL2\SDL\SDL2_mixer.lib" />
+    <Library Include="TTF\SDL2_ttf.lib" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
@@ -182,6 +184,7 @@
     <ClInclude Include="LevelMap.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="PowBlock.h" />
+    <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
