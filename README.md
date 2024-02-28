@@ -1,3 +1,3 @@
 # MarioProject
 
-now transfered to personal github from school account
+Created engine for a Mario project made from SLD2 and c++/c
