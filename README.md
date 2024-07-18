@@ -7,6 +7,8 @@ Created engine for a Mario project made from SLD2 and C++/C
 For code (MarioGame -> MarioGame) or (https://tinyurl.com/64tjvamw)
 
 
+## Gameplay
+
 <ins> Here is some gameplay below ! - </ins>
 
 
